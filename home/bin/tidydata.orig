@@ -1,0 +1,44 @@
+#!/usr/bin/perl
+
+# move yesterday's data files from main data logging directory to a subdirectory
+# named by month YYYY-MM
+#
+# Ian Brooks : i.brooks@see.leeds.ac.uk : 7/1/2016
+
+$datapath = "/home/data";
+
+chdir "$datapath" || die "can't cd to $datapath\n";
+
+# get yesterday's date
+@datetime = gmtime(time - 86400);
+
+$MM = ('01','02','03','04','05','06','07','08','09','10','11','12',)[$datetime[4]];
+$YYYY = $datetime[5]+1900;
+$YY = $datetime[5]-100;
+if ($YY < 10) {
+  $YY = "0".$dd;
+}
+$dd = $datetime[3];
+if ($dd < 10) {
+  $dd = "0".$dd;
+}
+
+# define the monthly directory name
+$datedir = "$YYYY-$MM";
+
+# if the monthly directory doesn't exist, create it
+$dirname = "$datapath/$datedir";
+if (! -d $dirname) {
+  print "making directory $datapath/$datedir\n";
+  mkdir $dirname;
+}
+ 
+$filepattern = "$YY$MM$dd*";
+
+
+# move yesterday's data files into monthly directory
+@files = `ls $filepattern`;
+if (@files > 0) {
+  print "moving files $filepattern to ./$datedir\n";
+  system("mv $filepattern ./$datedir");
+}

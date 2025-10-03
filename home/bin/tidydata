@@ -1,0 +1,8 @@
+#This is an empty script that does nothing
+#The tidydata script was moving files that the logger code
+#hadn't finished writing. This was causing the logger code
+#to crash. Hence I've moved the tidydata script to
+#tidydata.orig and replaced it with this script that does
+#nothing. This is not a big deal as the data doesn't
+#really need tidying. See issue number 7 in the git
+#instrument-log repo.

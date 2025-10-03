@@ -1,0 +1,5 @@
+/root/stoplogger
+rm /root/data
+mkdir /mnt/sda1/data
+ln -s /mnt/sda1/data data
+

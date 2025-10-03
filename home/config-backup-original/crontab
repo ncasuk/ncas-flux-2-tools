@@ -1,0 +1,23 @@
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file.
+# This file also has a username field, that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+#--------------------------------------------------------------
+# m h dom mon dow                               user    command
+#--------------------------------------------------------------
+
+# set the system time via network time server
+0 * * * *                                       root    /home/bin/set-time-ntp >> /root/logs/set-time.log
+
+# move yesterday's files into monthly directory
+1 1 * * *					root	/home/bin/tidydata
+
+#-------------------------------------------------------------------------------
+# These are default examples provided by MOXA
+#0,5,10,15,20,25,30,35,40,45,50,55 * * * *      root    lcmmessage -c -m "`date`
+"
+

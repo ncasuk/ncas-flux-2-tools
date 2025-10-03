@@ -1,0 +1,5 @@
+/root/stoplogger
+umount /mnt/sda
+df -h
+/root/bin/mountusb
+/root/run-logger

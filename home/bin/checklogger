@@ -1,0 +1,16 @@
+#!/bin/sh
+RUNDIR=/home
+
+COUNT=$(ps | grep $(cat ${RUNDIR}/logger.pid) | wc -l)
+DOUBLE_CHECK_COUNT=$(ps | grep \ \ ${RUNDIR}/l[ou]gger | wc -l)
+
+DATEFORMAT="%Y-%m-%d_%H:%M:%S"
+
+if [ ${COUNT} -eq 1 ]; then
+    echo "$(date +${DATEFORMAT}) Logger running: PID $(cat ${RUNDIR}/logger.pid)"
+elif [ ${DOUBLE_CHECK_COUNT} -eq 0 ]; then
+    echo "$(date +${DATEFORMAT}) Logger not running"
+    ${RUNDIR}/runlogger 
+else
+    echo "$(date +${DATEFORMAT}) Multiple loggers (${DOUBLE_CHECK_COUNT}) running. Fix Manually."
+fi

@@ -1,0 +1,14 @@
+#!/bin/sh
+# start up any daemons we want running
+
+/etc/init.d/cron start
+
+
+# --- other things to run at boot up -----
+
+# set network time
+/root/bin/set-time-ntp
+
+# start logger
+#/root/run-logger
+

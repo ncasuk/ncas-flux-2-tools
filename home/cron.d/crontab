@@ -1,0 +1,24 @@
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file.
+# This file also has a username field, that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+#----------------------------------------------------------------------------
+# m h dom mon dow                               user    command
+#----------------------------------------------------------------------------
+0,5,10,15,20,25,30,35,40,45,50,55 * * * *	root	/home/bin/checknetwork >> /var/cron
+2,7,12,17,22,27,32,37,42,47,52,57 * * * *	root	/home/bin/checklogger >> /var/cron
+
+# set the system time via network time server
+0 * * * *                                       root    /home/bin/set-time-ntp 
+
+# copy yesterday's files to monthly archive directory
+0 * * * *					root	/home/bin/tidydata
+
+#-----------------------------------------------------------------------------
+# examples from MOXA
+# m h dom mon dow user	command
+#0,5,10,15,20,25,30,35,40,45,50,55 * * * *	root	echo test01 > /var/cron

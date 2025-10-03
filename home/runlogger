@@ -1,0 +1,2 @@
+cd /home
+/home/logger >> /mnt/usbstorage/logger.log &

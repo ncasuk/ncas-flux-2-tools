@@ -1,0 +1,12 @@
+#!/bin/sh
+INTERFACE=eth1
+
+COUNT=$(ifconfig $INTERFACE | grep 10.120.120 | wc -l)
+
+if [ ${COUNT} -eq 1 ]; then
+    echo "$(date +%Y-%m-%d_%H:%M:%S) Network ${INTERFACE} up";
+else
+    echo "$(date +%Y-%m-%d_%H:%M:%S) Network ${INTERFACE} not up, restarting"
+    ifdown ${INTERFACE}
+    ifup ${INTERFACE}
+fi

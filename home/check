@@ -1,0 +1,22 @@
+DIR=/home
+PORT=`cat $DIR/logger.conf $DIR/gps.conf | grep -v '\#' | grep $1 | awk '{print $1}'`
+PROTOCOL=`cat $DIR/logger.conf $DIR/gps.conf | grep -v '\#' | grep $1 | awk '{print $3}'`
+BAUD=`cat $DIR/logger.conf $DIR/gps.conf | grep -v '\#' | grep $1 | awk '{print $4}'`
+
+echo PORT=$PORT
+echo PROTOCOL=$PROTOCOL
+echo BAUD=$BAUD
+
+echo $DIR/sercomm $PORT $PROTOCOL B$BAUD crlf
+echo About to run. Use ctrl-c to stop at any time 
+sleep 2
+$DIR/sercomm $PORT $PROTOCOL B$BAUD crlf
+
+#PID=$!
+
+#sleep 3
+
+#kill -9 $PID
+
+
+#echo /home/sercomm $PORT $PROTOCOL $BAUD crlf

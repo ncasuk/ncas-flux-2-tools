@@ -1,0 +1,4 @@
+DIR=/home
+PORT=`cat $DIR/gps.conf | grep -v '\#' | grep gps | awk '{print $1}'`
+/home/GPSsync $PORT
+#/home/GPSsync /dev/ttyM0 

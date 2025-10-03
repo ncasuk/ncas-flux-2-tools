@@ -1,0 +1,10 @@
+#!/bin/sh
+
+#ntpdate 129.11.87.1 # SEE timeserver
+#ntpdate 192.168.5.5 # Oden timeserver
+#ntpdate 129.6.15.28 # time-a.nist.gov
+#ntpdate 10.44.45.16 # dacciwa timeserver (rpi with gps)
+ntpdate time.nist.gov
+# Hardware clock battery is dead - won't set.
+hwclock -w
+

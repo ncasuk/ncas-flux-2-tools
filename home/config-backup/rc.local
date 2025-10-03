@@ -1,0 +1,14 @@
+# !/bin/sh
+# Add you want to run daemon
+
+# start the cron daemon
+/etc/init.d/cron start
+
+# set network time
+/home/bin/set-time-ntp
+# or set to GPS tme
+#/home/sync2gps
+
+# start the logger
+#/home/runlogger
+
